@@ -7,6 +7,10 @@ const useFetch = (url) => {
 
     const [response, setResponse] = useState();
     const [hasError, setHasError] = useState(false);
+    const [isLoading, setLoading] = useState(true);
+
+ 
+
 
     const getApi = () => {
 
@@ -20,9 +24,13 @@ const useFetch = (url) => {
         console.log(err)
         setHasError(true)
     })
+    .finally(() => {
+      setLoading(false);
+    });
+    
     }
 
-    return [response, getApi, hasError]
+    return [response, getApi, hasError, isLoading]
 
 }
 
